@@ -6,6 +6,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import javax.swing.text.View;
+
 public class UserRolesPage extends TestBase {
 
     @FindBy(xpath = "//span[@class='link-title'][contains(.,'User Roles')]")
@@ -47,6 +49,12 @@ public class UserRolesPage extends TestBase {
     @FindBy(xpath = "//p[@class='text-danger'][contains(.,'permissions is required.')]")
     WebElement Validation2;
 
+    @FindBy(xpath = "//svg[@class='feather feather-edit']")
+    WebElement EditIcon;
+
+    @FindBy(xpath = "//svg[@class='feather feather-eye']")
+    WebElement ViewIcon;
+
     public UserRolesPage(){
         PageFactory.initElements(driver, this);
     }
@@ -64,10 +72,10 @@ public class UserRolesPage extends TestBase {
         return Name.isDisplayed();
     }
 
-    public void filterUserRolesPageByName(String name){
+    public void filterUserRolesPageByName(){
         UserRoles.click();
         Name.click();
-        Name.sendKeys(name);
+        Name.sendKeys("Admin");
         SearchBtn.click();
         SearchResult.isDisplayed();
     }
@@ -89,14 +97,23 @@ public class UserRolesPage extends TestBase {
         Validation2.isDisplayed();
     }
 
-    public void verifyAddingUserRoles(String rolename, String description){
+    public void verifyAddingUserRoles(){
         AddUserRoles.click();
         RoleName.click();
-        RoleName.sendKeys(rolename);
+        RoleName.sendKeys("Testing Role");
         Description.click();
-        Description.sendKeys(description);
+        Description.sendKeys("Testing Role");
         Permissions.click();
         PermissionsOption.click();
         SaveBtn.click();
+    }
+
+    public void verifyEditingUserRoles(){
+        EditIcon.click();
+        SaveBtn.click();
+    }
+
+    public void verifyViewingUserRoles(){
+        ViewIcon.click();
     }
 }

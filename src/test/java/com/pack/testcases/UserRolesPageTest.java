@@ -43,23 +43,17 @@ public class UserRolesPageTest extends TestBase {
     }
 
     @Test(priority = 3)
-    public void verifyNameFieldTest(){
+    public void verifyUserRolesPageTest(){
         userRolesPage.clickOnUserRolesPageLink();
         userRolesPage.verifyNameField();
+        userRolesPage.verifyAddUserRolesBtn();
     }
 
-    @DataProvider
-    public Object[][] getTestData(){
-        Object data[][] = TestUtil.getTestData(sheetName);
-        return new Object[][] {
-                {"Admin"},
-        };
-    }
 
-    @Test(priority = 4, dataProvider = "getTestData")
-    public void filterUserRolesPageTest(String name){
+    @Test(priority = 4)
+    public void filterUserRolesPageTest(){
         userRolesPage.clickOnUserRolesPageLink();
-        userRolesPage.filterUserRolesPageByName(name);
+        userRolesPage.filterUserRolesPageByName();
         synchronized (this){
             try{
                 this.wait(100);
@@ -71,38 +65,16 @@ public class UserRolesPageTest extends TestBase {
     }
 
     @Test(priority = 5)
-    public void verifyAddUserRolesBtnTest(){
-        userRolesPage.clickOnUserRolesPageLink();
-        userRolesPage.verifyAddUserRolesBtn();
-        synchronized (this){
-            try{
-                this.wait(100);
-                System.out.println("Thread in runnable state");
-            }catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
-    @Test(priority = 6)
     public void verifyMandatoryFieldsTest(){
         userRolesPage.clickOnUserRolesPageLink();
         userRolesPage.verifyMandatoryFields();
     }
 
-    @DataProvider
-    public Object[][] getTestData1(){
-        Object data[][] = TestUtil.getTestData(sheetName);
-        return new Object[][] {
-                {"Testing Role"},
-                {"Testing Role"},
-        };
-    }
 
-    @Test(priority = 7, dataProvider = "getTestData1")
-    public void verifyAddingUserRolesTest(String name, String description){
+    @Test(priority = 6)
+    public void verifyAddingUserRolesTest(){
         userRolesPage.clickOnUserRolesPageLink();
-        userRolesPage.verifyAddingUserRoles(name,description);
+        userRolesPage.verifyAddingUserRoles();
         synchronized (this){
             try{
                 this.wait(100);
@@ -111,6 +83,18 @@ public class UserRolesPageTest extends TestBase {
                 e.printStackTrace();
             }
         }
+    }
+
+    @Test(priority = 7)
+    public void verifyEditingUserRolesTest(){
+        userRolesPage.clickOnUserRolesPageLink();
+        userRolesPage.verifyEditingUserRoles();
+    }
+
+    @Test(priority = 8)
+    public void verifyViewingUserRolesTest(){
+        userRolesPage.clickOnUserRolesPageLink();
+        userRolesPage.verifyViewingUserRoles();
     }
 
     @AfterMethod
