@@ -51,17 +51,10 @@ public class UserRolesPageTest extends TestBase {
 
 
     @Test(priority = 4)
-    public void filterUserRolesPageTest(){
+    public void filterUserRolesPageTest() throws InterruptedException{
         userRolesPage.clickOnUserRolesPageLink();
         userRolesPage.filterUserRolesPageByName();
-        synchronized (this){
-            try{
-                this.wait(100);
-                System.out.println("Thread in runnable state");
-            }catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
+        Thread.sleep(2000);
     }
 
     @Test(priority = 5)
@@ -72,17 +65,10 @@ public class UserRolesPageTest extends TestBase {
 
 
     @Test(priority = 6)
-    public void verifyAddingUserRolesTest(){
+    public void verifyAddingUserRolesTest() throws InterruptedException{
         userRolesPage.clickOnUserRolesPageLink();
         userRolesPage.verifyAddingUserRoles();
-        synchronized (this){
-            try{
-                this.wait(100);
-                System.out.println("Thread in runnable state");
-            }catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
+        Thread.sleep(2000);
     }
 
     @Test(priority = 7)
